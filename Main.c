@@ -5,12 +5,55 @@
 #define p1 184
 #define p2 169
 
+int field[9][9];
+
+void spielfeld(){
+
+int x, y, e,i;
+i=1;
+
+for (y=1; y<=8; y++){       /* Buchstaben setzen */
+  x=0;
+  field[x][y]=(64+y);
+  }
+
+for (x=1; x<=8; x++){       /* Zahlen setzen */
+  y=0;
+  field[x][y]=(48+x);
+  }
+for(y=1; y<=8; y++){
+  for (x=1; x<=8; x++){
+    e=i%2;                          /* Abwechselndes setzen von Spielfeldfarben */
+    i++;
+    if (e == 1)
+      field[x][y]=88;             /* 88 = 'X' -- 254 = 'Quadrat' */
+    else
+      field[x][y]=254;
+  }
+    i++;                                    /* Versatz der Z�hlervariable um 1 pro Druchlauf */
+  }
+
+}/*void Spielfeld*/
+void ausgabe_konsole(){
+
+int x, y;
+
+for (y=0; y<=8; y++){                   /* Ausgabe des Arrays mit ASCII-Variablen */
+  for (x=0; x<=8; x++){
+    printf("%c ", field[x][y]);
+  }
+    printf("\n");
+}
+
+}/*void ausgabe_konsole*/
+
+
 void spielzug(int player) {
-  int n=1;
+
   int start_1, ziel_1;
   char start_a, ziel_a;
   int start_a_i, ziel_a_i;
-  while (n!=0) {
+
     printf("Spielstein waehlen\n");
     int go=1;
 
@@ -31,7 +74,7 @@ void spielzug(int player) {
     printf("Zielsposition waehlen\n");
     go=1;
 
-    while (go!=0) {
+    while (go!=0) { /*so lange Zielfeld waehlen, bis Zug moeglich ist*/
     scanf("%c %d",&ziel_a ,&ziel_1);
     ziel_a_i=ziel_a-96; //Buchstabe in Koordinatenzahl umgerechnet
     int check=(ziel_a_i+ziel_1) % 2;//Feldwerte addiert muss ungerade sein
@@ -119,53 +162,35 @@ void spielzug(int player) {
         go=1;
       }
     }//if player2
-
-
-
-
-
-
-    field [][]
-
-
-  }
-
-
-}
-
+  }/*while go Ziel*/
+}/*void spielzug*/
 
 
 int main () {
 
-hauptmenu();
+/*hauptmenu();
 
-spielfeld(feld);
+
 feldaufbau();
 
-ausgabe_konsole();
+
 ausgabe_bitmap();
 
 spielschleife();
-
-feldbau ();
-int end=1;
-int player;
-while (end!=0) {
-
-switch (player) {
-case 1: spielzug()
-
-
-
-}//switch player
-}//while end
-
-
-
 eingabe_konsole();
-
+spielzug();
 check_win();
+*/
+spielfeld();
+ausgabe_konsole();
+while (end!=0){
+  player=1;
+  spielzug(player);
+  player=2;
+  spielzug(player);
+}
 
-gewinn();
 
+free(field);
+return 0;
 }
