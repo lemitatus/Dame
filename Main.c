@@ -80,7 +80,7 @@ void spielzug(int player) {
     int check=(ziel_a_i+ziel_1) % 2;//Feldwerte addiert muss ungerade sein
 
     if (check!=0 || ziel_a_i<8 || ziel_1<8){//außerhalb oder wißes Feld
-      printf("Feld ausserhalb des bespielbaren Feldes, neuer Versuch!\n", );
+      printf("Feld ausserhalb des bespielbaren Feldes, neuer Versuch!\n");
     }
 
     if (player==1 && field [ziel_a_i][ziel_1]==frei){ //gegenchecken richtiges leeres feld?...einfacher, möglicher Zug
@@ -167,7 +167,8 @@ void spielzug(int player) {
 
 
 int main () {
-
+int player;
+int end;
 /*hauptmenu();
 
 
@@ -190,7 +191,5 @@ while (end!=0){
   spielzug(player);
 }
 
-
-free(field);
 return 0;
 }
