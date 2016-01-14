@@ -98,7 +98,6 @@ spielschleife();
 eingabe_konsole();
 spielzug();
 check_win();
-
-
-
+    
+    
 }
