@@ -4,8 +4,33 @@
 #define frei 254
 #define p1 184
 #define p2 169
+#define SVG_HEIGHT 64
+#define SVG_WIDTH 64
+
 
 int field[9][9];
+
+
+void svg_start(int width, int height)   /*Beginn der SVG Annimation*/
+{
+    printf("<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n");
+    printf("<svg xmlns=\"http://www.w3.org/2000/svg\"\n");
+    printf("     xmlns:xlink=\"http://www.w3.org/1999/xlink\"\n");
+    printf("     xmlns:ev=\"http://www.w3.org/2001/xml-events\"\n");
+    printf("     version=\"1.1\"\n");
+    printf("     baseProfile=\"full\"\n");
+    printf("     width=\"%d\"\n", width);
+    printf("     height=\"%d\">\n\n", height);
+}
+
+void svg_end()  /*Ende der SVG Annimation*/
+{
+    printf("</svg>\n");
+}
+
+void svg_text_number(int x, int y, char Feld) {
+  printf("<text x=\"%d\" y=\"%d\">%c</text>\n", x, y, Feld);
+}
 
 void hauptmenu ()
 {
@@ -22,11 +47,11 @@ void hauptmenu ()
             break;
         case 3:
             return;
-            
+
         default:
             break;
     }
-    
+
 }
 
 
@@ -43,7 +68,7 @@ void spielschleife()
             case 2:
                 spielzug();
                 player=1
-                
+
             default:
                 break;
         }
@@ -250,6 +275,8 @@ void spielzug(int player) {
 int main () {
 int player;
 int end;
+svg_start(SVG_HEIGHT, SVG_WIDTH);
+
 hauptmenu();
 feldaufbau();
 
@@ -260,7 +287,7 @@ spielschleife();
 eingabe_konsole();
 spielzug();
 check_win();
-    
+
 spielfeld();
 ausgabe_konsole();
 while (end!=0){
@@ -269,6 +296,6 @@ while (end!=0){
   player=2;
   spielzug(player);
 }
-
+svg_end();
 return 0;
 }
