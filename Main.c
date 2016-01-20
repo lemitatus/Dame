@@ -218,7 +218,6 @@ void spielzug (int player) {
     printf("Zahlen angenommen %d, %d, %d, %d \n",kords[0] ,kords[1], kords[2], kords[3]);
 
     if (field[kords[0]][kords[1]]==p1){
-      printf("Feld p1 Ausgewaelt, check gibt %d zurück\n",check_zug_p1());
       switch (check_zug_p1()) {
         case 0:
           spielzug(player);
